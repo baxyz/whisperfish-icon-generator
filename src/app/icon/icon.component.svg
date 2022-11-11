@@ -1,0 +1,12 @@
+<svg viewBox="0 0 2048 2048">
+  <g>
+    <rect
+      x="0"
+      y="0"
+      width="2048"
+      height="2048"
+      [attr.fill]="fillColor"
+      (click)="changeColor()"
+    />
+  </g>
+</svg>
