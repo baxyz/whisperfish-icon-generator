@@ -1,12 +1,5 @@
 import { Component } from '@angular/core';
-import { ClrTimelineLayout, ClrTimelineStepState } from '@clr/angular';
-
-interface Settings {
-  BgTopLeft: boolean;
-  BgTopRight: boolean;
-  BgBottomLeft: boolean;
-  BgBottomRight: boolean;
-}
+import { IconSettings } from './icon';
 
 @Component({
   selector: 'app-root',
@@ -14,17 +7,14 @@ interface Settings {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  readonly Layout = ClrTimelineLayout;
-  readonly State = ClrTimelineStepState;
-
-  settings: Settings = {
+  settings: IconSettings = {
     BgTopLeft: true,
     BgTopRight: false,
     BgBottomLeft: true,
     BgBottomRight: false,
   };
 
-  update<K extends keyof Settings>(key: K, value: Settings[K]) {
+  update<K extends keyof IconSettings>(key: K, value: IconSettings[K]) {
     this.settings[key] = value;
 
     console.log(JSON.stringify(this.settings));

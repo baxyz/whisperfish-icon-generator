@@ -1,111 +1,47 @@
-<div class="main-container">
-  <div class="content-container">
-    <div class="content-area">
-      <div class="card">
-        <h3 class="card-header">Whisperfish Icon Generator</h3>
+<app-icon></app-icon>
 
-        <section class="card-block section">
-          <div class="item item--start">
-            <app-icon></app-icon>
-          </div>
+<fieldset>
+  <legend>Background Shape</legend>
 
-          <div class="item item--end">
-            <clr-timeline [clrLayout]="Layout.VERTICAL" style="width: 50%">
-              <clr-timeline-step [clrState]="State.NOT_STARTED">
-                <clr-timeline-step-title>
-                  Background Shape
-                </clr-timeline-step-title>
-                <clr-timeline-step-description>
-                  <!-- TOP -->
-                  <clr-toggle-container clrInline>
-                    <label>Top corners</label>
-                    <clr-toggle-wrapper>
-                      <input
-                        type="checkbox"
-                        clrToggle
-                        [checked]="settings.BgTopLeft"
-                        (change)="update('BgTopLeft', etob($event))"
-                      />
-                      <label>Left</label>
-                    </clr-toggle-wrapper>
-                    <clr-toggle-wrapper>
-                      <input
-                        type="checkbox"
-                        clrToggle
-                        [checked]="settings.BgTopRight"
-                        (change)="update('BgTopRight', etob($event))"
-                      />
-                      <label>Right</label>
-                    </clr-toggle-wrapper>
-                  </clr-toggle-container>
-                  <!-- BOTTOM -->
-                  <clr-toggle-container clrInline>
-                    <label>Bottom corners</label>
-                    <clr-toggle-wrapper>
-                      <input
-                        type="checkbox"
-                        clrToggle
-                        [checked]="settings.BgBottomLeft"
-                        (change)="update('BgBottomLeft', etob($event))"
-                      />
-                      <label>Left</label>
-                    </clr-toggle-wrapper>
-                    <clr-toggle-wrapper>
-                      <input
-                        type="checkbox"
-                        clrToggle
-                        [checked]="settings.BgBottomRight"
-                        (change)="update('BgBottomRight', etob($event))"
-                      />
-                      <label>Right</label>
-                    </clr-toggle-wrapper>
-                  </clr-toggle-container>
-                </clr-timeline-step-description>
-              </clr-timeline-step>
-              <clr-timeline-step [clrState]="State.NOT_STARTED">
-                <clr-timeline-step-title>Add KMS</clr-timeline-step-title>
-                <clr-timeline-step-description>
-                  Root CA certificate requested. Upload it to the KMS to
-                  complete the connection.
-                  <img
-                    src="assets/placeholder_350x150.png"
-                    alt="Example of an Image in a Card"
-                  />
-                </clr-timeline-step-description>
-              </clr-timeline-step>
-              <clr-timeline-step
-                class="gemini-ignore"
-                [clrState]="State.PROCESSING"
-              >
-                <clr-timeline-step-title
-                  >Make vCenter trust KMS</clr-timeline-step-title
-                >
-                <clr-timeline-step-description>
-                  Root CA certificate requested. Upload it to the KMS to
-                  complete the connection. Third sentence is very long and very
-                  long.
-                </clr-timeline-step-description>
-              </clr-timeline-step>
-              <clr-timeline-step [clrState]="State.NOT_STARTED">
-                <clr-timeline-step-title>
-                  Make KMS trust vCenter
-                </clr-timeline-step-title>
-                <clr-timeline-step-description
-                  >Upload it to the KMS to complete the connection. Third
-                  sentence.
-                  <button class="btn btn-sm">Refresh</button>
-                </clr-timeline-step-description>
-              </clr-timeline-step>
-              <clr-timeline-step [clrState]="State.NOT_STARTED">
-                <clr-timeline-step-title>Connected</clr-timeline-step-title>
-                <clr-timeline-step-description>
-                  No. It's not connected.
-                </clr-timeline-step-description>
-              </clr-timeline-step>
-            </clr-timeline>
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-</div>
+  <!-- TOP -->
+  <label>Top corners</label>
+  <section>
+    <input
+      type="checkbox"
+      clrToggle
+      [checked]="settings.BgTopLeft"
+      (change)="update('BgTopLeft', etob($event))"
+    />
+    <label>Left</label>
+  </section>
+  <section>
+    <input
+      type="checkbox"
+      clrToggle
+      [checked]="settings.BgTopRight"
+      (change)="update('BgTopRight', etob($event))"
+    />
+    <label>Right</label>
+  </section>
+
+  <!-- BOTTOM -->
+  <label>Bottom corners</label>
+  <section>
+    <input
+      type="checkbox"
+      clrToggle
+      [checked]="settings.BgBottomLeft"
+      (change)="update('BgBottomLeft', etob($event))"
+    />
+    <label>Left</label>
+  </section>
+  <section>
+    <input
+      type="checkbox"
+      clrToggle
+      [checked]="settings.BgBottomRight"
+      (change)="update('BgBottomRight', etob($event))"
+    />
+    <label>Right</label>
+  </section>
+</fieldset>
