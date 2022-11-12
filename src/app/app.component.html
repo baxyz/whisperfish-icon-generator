@@ -1,47 +1,39 @@
-<app-icon></app-icon>
-
-<fieldset>
-  <legend>Background Shape</legend>
-
-  <!-- TOP -->
-  <label>Top corners</label>
-  <section>
-    <input
-      type="checkbox"
-      clrToggle
-      [checked]="settings.BgTopLeft"
-      (change)="update('BgTopLeft', etob($event))"
-    />
-    <label>Left</label>
-  </section>
-  <section>
-    <input
-      type="checkbox"
-      clrToggle
-      [checked]="settings.BgTopRight"
-      (change)="update('BgTopRight', etob($event))"
-    />
-    <label>Right</label>
-  </section>
-
-  <!-- BOTTOM -->
-  <label>Bottom corners</label>
-  <section>
-    <input
-      type="checkbox"
-      clrToggle
-      [checked]="settings.BgBottomLeft"
-      (change)="update('BgBottomLeft', etob($event))"
-    />
-    <label>Left</label>
-  </section>
-  <section>
-    <input
-      type="checkbox"
-      clrToggle
-      [checked]="settings.BgBottomRight"
-      (change)="update('BgBottomRight', etob($event))"
-    />
-    <label>Right</label>
-  </section>
-</fieldset>
+<sl-split-panel>
+  <div slot="start">
+    <app-icon></app-icon>
+  </div>
+  <div slot="end">
+    <sl-details summary="Background Shape" [open]="true">
+      <div class="grid">
+        <div style="grid-row: 1; grid-column: 2">Left</div>
+        <div style="grid-row: 1; grid-column: 3">Right</div>
+        <div style="grid-row: 2; grid-column: 1">Top</div>
+        <div style="grid-row: 2; grid-column: 2">
+          <sl-switch
+            [checked]="settings.BgTopLeft"
+            (sl-change)="update('BgTopLeft', etob($event))"
+          ></sl-switch>
+        </div>
+        <div style="grid-row: 2; grid-column: 3">
+          <sl-switch
+            [checked]="settings.BgTopRight"
+            (sl-change)="update('BgTopRight', etob($event))"
+          ></sl-switch>
+        </div>
+        <div style="grid-row: 3; grid-column: 1">Bottom</div>
+        <div style="grid-row: 3; grid-column: 2">
+          <sl-switch
+            [checked]="settings.BgBottomLeft"
+            (sl-change)="update('BgBottomLeft', etob($event))"
+          ></sl-switch>
+        </div>
+        <div style="grid-row: 3; grid-column: 3">
+          <sl-switch
+            [checked]="settings.BgBottomRight"
+            (sl-change)="update('BgBottomRight', etob($event))"
+          ></sl-switch>
+        </div>
+      </div>
+    </sl-details>
+  </div>
+</sl-split-panel>

@@ -22,7 +22,10 @@ export class AppComponent {
 
   etob(event: Event): boolean {
     const element = event.target as HTMLInputElement;
-    if (element.type === 'checkbox') {
+    if (
+      element.type === 'checkbox' ||
+      [true, false].includes(element.checked)
+    ) {
       return element.checked;
     } else {
       return element.value !== 'false';
