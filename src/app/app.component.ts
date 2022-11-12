@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IconSettings } from './icon';
 
 @Component({
   selector: 'app-root',
@@ -7,18 +6,7 @@ import { IconSettings } from './icon';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  settings: IconSettings = {
-    BgTopLeft: true,
-    BgTopRight: false,
-    BgBottomLeft: true,
-    BgBottomRight: false,
-  };
-
-  update<K extends keyof IconSettings>(key: K, value: IconSettings[K]) {
-    this.settings[key] = value;
-
-    console.log(JSON.stringify(this.settings));
-  }
+  devMode: boolean = false;
 
   etob(event: Event): boolean {
     const element = event.target as HTMLInputElement;
@@ -30,5 +18,8 @@ export class AppComponent {
     } else {
       return element.value !== 'false';
     }
+  }
+  etos(event: Event): string {
+    return (event.target as HTMLInputElement).value;
   }
 }

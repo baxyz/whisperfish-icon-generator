@@ -18,9 +18,16 @@
     [slot=end] {
       padding: 20px;
 
+      sl-details, sl-switch {
+        &:not(:first-child) {
+          margin-top: var(--sl-spacing-2x-small);
+        }
+      }
+
       .grid {
         display: inline-grid;
         grid-gap: 20px;
+        align-items: center;
       }
 
     }

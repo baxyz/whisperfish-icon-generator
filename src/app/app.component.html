@@ -1,39 +1,86 @@
 <sl-split-panel>
   <div slot="start">
-    <app-icon></app-icon>
+    <app-icon #icon></app-icon>
   </div>
   <div slot="end">
-    <sl-details summary="Background Shape" [open]="true">
+    <!-- ------------------------------------------------------------------- -->
+    <!--                                                                     -->
+    <!--  Background: shape                                                  -->
+    <!--                                                                     -->
+    <!-- ------------------------------------------------------------------- -->
+    <sl-details summary="Background Shape">
       <div class="grid">
         <div style="grid-row: 1; grid-column: 2">Left</div>
         <div style="grid-row: 1; grid-column: 3">Right</div>
         <div style="grid-row: 2; grid-column: 1">Top</div>
         <div style="grid-row: 2; grid-column: 2">
           <sl-switch
-            [checked]="settings.BgTopLeft"
-            (sl-change)="update('BgTopLeft', etob($event))"
+            [checked]="icon.settings.backgroundTopLeft"
+            (sl-change)="icon.change('backgroundTopLeft', etob($event))"
           ></sl-switch>
         </div>
         <div style="grid-row: 2; grid-column: 3">
           <sl-switch
-            [checked]="settings.BgTopRight"
-            (sl-change)="update('BgTopRight', etob($event))"
+            [checked]="icon.settings.backgroundTopRight"
+            (sl-change)="icon.change('backgroundTopRight', etob($event))"
           ></sl-switch>
         </div>
         <div style="grid-row: 3; grid-column: 1">Bottom</div>
         <div style="grid-row: 3; grid-column: 2">
           <sl-switch
-            [checked]="settings.BgBottomLeft"
-            (sl-change)="update('BgBottomLeft', etob($event))"
+            [checked]="icon.settings.backgroundBottomLeft"
+            (sl-change)="icon.change('backgroundBottomLeft', etob($event))"
           ></sl-switch>
         </div>
         <div style="grid-row: 3; grid-column: 3">
           <sl-switch
-            [checked]="settings.BgBottomRight"
-            (sl-change)="update('BgBottomRight', etob($event))"
+            [checked]="icon.settings.backgroundBottomRight"
+            (sl-change)="icon.change('backgroundBottomRight', etob($event))"
           ></sl-switch>
         </div>
       </div>
     </sl-details>
+
+    <!-- ------------------------------------------------------------------- -->
+    <!--                                                                     -->
+    <!--  Background: Color                                                  -->
+    <!--                                                                     -->
+    <!-- ------------------------------------------------------------------- -->
+    <sl-details summary="Background Color" [open]="true">
+      <div class="grid">
+        <div style="grid-row: 1; grid-column: 1">Top-Left</div>
+        <div style="grid-row: 1; grid-column: 2">
+          <sl-color-picker
+            format="hex"
+            [attr.value]="icon.settings.backgroundColor1"
+            size="large"
+            (sl-change)="icon.change('backgroundColor1', etos($event))"
+          ></sl-color-picker>
+        </div>
+        <div style="grid-row: 2; grid-column: 1">Bottom-Right</div>
+        <div style="grid-row: 2; grid-column: 3">
+          <sl-color-picker
+            format="hex"
+            value="{{ icon.settings.backgroundColor2 }}"
+            [attr.value]="icon.settings.backgroundColor2"
+            size="large"
+            (sl-change)="icon.change('backgroundColor2', etos($event))"
+          ></sl-color-picker>
+        </div>
+      </div>
+    </sl-details>
+
+    <!-- ------------------------------------------------------------------- -->
+    <!--                                                                     -->
+    <!--  Settings                                                           -->
+    <!--                                                                     -->
+    <!-- ------------------------------------------------------------------- -->
+    <sl-details *ngIf="devMode" summary="See settings" [open]="true">
+      <pre [innerText]="icon.settings | json"></pre>
+    </sl-details>
+
+    <sl-switch [checked]="devMode" (sl-change)="devMode = etob($event)"
+      >Dev mode</sl-switch
+    >
   </div>
 </sl-split-panel>
