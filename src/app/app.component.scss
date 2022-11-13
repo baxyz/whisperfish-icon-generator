@@ -1,5 +1,4 @@
 :host {
-
   app-icon {
     display: block;
     height: 300px;
@@ -7,18 +6,18 @@
   }
 
   sl-split-panel {
-
-    [slot=start] {
+    [slot="start"] {
       padding: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    [slot=end] {
+    [slot="end"] {
       padding: 20px;
 
-      sl-details, sl-switch {
+      sl-details,
+      sl-switch {
         &:not(:first-child) {
           margin-top: var(--sl-spacing-2x-small);
         }
@@ -29,8 +28,45 @@
         grid-gap: 20px;
         align-items: center;
       }
+    }
+  }
 
+  footer {
+    margin-top: var(--sl-spacing-large);
+    border-top: 1px solid var(--sl-color-neutral-50);
+
+    padding: var(--sl-spacing-large);
+
+    color: var(--sl-color-neutral-300);
+
+    > section:not(:first-child) {
+      margin-top: var(--sl-spacing-small);
     }
 
+    a {
+      &,
+      &:link,
+      &:visited,
+      &:hover,
+      &:active,
+      &:-webkit-any-link {
+        text-decoration: none;
+      }
+
+      &,
+      \deep\ sl-icon {
+        &,
+        &:link,
+        &:visited,
+        &:-webkit-any-link {
+          color: var(--sl-color-neutral-500);
+        }
+
+        &:hover,
+        &:active {
+          color: var(--sl-color-primary-500);
+        }
+      }
+    }
   }
 }
