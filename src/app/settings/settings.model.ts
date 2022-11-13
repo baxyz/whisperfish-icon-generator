@@ -11,4 +11,15 @@ export interface Settings {
 
   shapeGap: boolean;
   shapeColor: string;
+
+  eyeEnabled: boolean;
+  eyeSize: number;
+  eyeX: number;
+  eyeY: number;
+
+  dotsEnabled: boolean;
+  dotsSize: number;
+  dotsX: number;
+  dotsY: number;
+  dotsGap: number;
 }

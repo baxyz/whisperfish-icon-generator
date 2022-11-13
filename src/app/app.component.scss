@@ -33,6 +33,14 @@
     sl-card::part(base) {
       height: 100%;
     }
+
+    sl-input {
+      width: 120px;
+
+      & + sl-input {
+        margin-top: var(--sl-spacing-small);
+      }
+    }
   }
 
   footer {

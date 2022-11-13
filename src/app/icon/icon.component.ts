@@ -10,7 +10,7 @@ import {
   getBackgroundBottomRightPath,
   getBackgroundTopLeftPath,
   getBackgroundTopRightPath,
-  getDotsPath,
+  getDotsPaths,
   getEyePath,
   getShapePath,
 } from './icon.helpers';
@@ -122,7 +122,7 @@ export class IconComponent implements OnInit {
     this._path.shape = [
       getShapePath(this._settings),
       getEyePath(this.settings),
-      getDotsPath(this.settings),
+      ...getDotsPaths(this.settings),
     ]
       .filter((t) => Boolean(t))
       .join(' ');

@@ -22,4 +22,13 @@ export const REPAINT_BACKGROUND_SHAPE_PROPERTIES: Array<keyof Settings> = [
 export const REPAINT_SHAPE_SHAPE_PROPERTIES: Array<keyof Settings> = [
   'shapeGap',
   'shapeColor',
+  'eyeEnabled',
+  'eyeSize',
+  'eyeX',
+  'eyeY',
+  'dotsEnabled',
+  'dotsSize',
+  'dotsX',
+  'dotsY',
+  'dotsGap',
 ];

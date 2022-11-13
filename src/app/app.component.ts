@@ -19,7 +19,12 @@ export class AppComponent {
       return element.value !== 'false';
     }
   }
+
   etos(event: Event): string {
     return (event.target as HTMLInputElement).value;
+  }
+
+  eton(event: Event): number {
+    return +(event.target as HTMLInputElement).value;
   }
 }
