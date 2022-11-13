@@ -1,104 +1,142 @@
-<sl-split-panel>
-  <div slot="start">
-    <app-icon #icon></app-icon>
-  </div>
-  <div slot="end">
-    <!-- ------------------------------------------------------------------- -->
-    <!--                                                                     -->
-    <!--  Background: shape                                                  -->
-    <!--                                                                     -->
-    <!-- ------------------------------------------------------------------- -->
-    <sl-details summary="Background Shape">
-      <div class="grid">
-        <div style="grid-row: 1; grid-column: 2">Left</div>
-        <div style="grid-row: 1; grid-column: 3">Right</div>
-        <div style="grid-row: 2; grid-column: 1">Top</div>
-        <div style="grid-row: 2; grid-column: 2">
-          <sl-switch
-            [checked]="icon.settings.backgroundTopLeft"
-            (sl-change)="icon.change('backgroundTopLeft', etob($event))"
-          ></sl-switch>
-        </div>
-        <div style="grid-row: 2; grid-column: 3">
-          <sl-switch
-            [checked]="icon.settings.backgroundTopRight"
-            (sl-change)="icon.change('backgroundTopRight', etob($event))"
-          ></sl-switch>
-        </div>
-        <div style="grid-row: 3; grid-column: 1">Bottom</div>
-        <div style="grid-row: 3; grid-column: 2">
-          <sl-switch
-            [checked]="icon.settings.backgroundBottomLeft"
-            (sl-change)="icon.change('backgroundBottomLeft', etob($event))"
-          ></sl-switch>
-        </div>
-        <div style="grid-row: 3; grid-column: 3">
-          <sl-switch
-            [checked]="icon.settings.backgroundBottomRight"
-            (sl-change)="icon.change('backgroundBottomRight', etob($event))"
-          ></sl-switch>
-        </div>
-      </div>
-    </sl-details>
+<section id="preview">
+  <app-icon #icon></app-icon>
+</section>
+<section id="control">
+  <!-- --------------------------------------------------------------------- -->
+  <!--  Background                                                           -->
+  <!-- --------------------------------------------------------------------- -->
+  <sl-card class="card-header">
+    <div slot="header">Background</div>
 
-    <!-- ------------------------------------------------------------------- -->
-    <!--                                                                     -->
-    <!--  Background: Color                                                  -->
-    <!--                                                                     -->
-    <!-- ------------------------------------------------------------------- -->
-    <sl-details summary="Background Color">
-      <div class="grid">
-        <div style="grid-row: 1; grid-column: 1">Top-Left</div>
-        <div style="grid-row: 1; grid-column: 2">
-          <sl-color-picker
-            format="hex"
-            [attr.value]="icon.settings.backgroundColor1"
-            size="large"
-            (sl-change)="icon.change('backgroundColor1', etos($event))"
-          ></sl-color-picker>
-        </div>
-        <div style="grid-row: 2; grid-column: 1">Bottom-Right</div>
-        <div style="grid-row: 2; grid-column: 3">
-          <sl-color-picker
-            format="hex"
-            value="{{ icon.settings.backgroundColor2 }}"
-            [attr.value]="icon.settings.backgroundColor2"
-            size="large"
-            (sl-change)="icon.change('backgroundColor2', etos($event))"
-          ></sl-color-picker>
-        </div>
+    <div class="grid">
+      <!-- Top-Left color gradient -->
+      <div style="grid-row: 1; grid-column: 1">
+        <sl-color-picker
+          format="hex"
+          [attr.value]="icon.settings.backgroundColor1"
+          size="large"
+          (sl-change)="icon.change('backgroundColor1', etos($event))"
+        ></sl-color-picker>
       </div>
-    </sl-details>
 
-    <!-- ------------------------------------------------------------------- -->
-    <!--                                                                     -->
-    <!--  Dashes: Color                                                      -->
-    <!--                                                                     -->
-    <!-- ------------------------------------------------------------------- -->
-    <sl-details summary="Dashes Color">
+      <!-- Bottom-Right color gradient -->
+      <div style="grid-row: 4; grid-column: 4">
+        <sl-color-picker
+          format="hex"
+          [attr.value]="icon.settings.backgroundColor2"
+          size="large"
+          (sl-change)="icon.change('backgroundColor2', etos($event))"
+        ></sl-color-picker>
+      </div>
+
+      <!-- Rect -->
+      <div
+        style="
+          grid-column: 2 / 4;
+          grid-row: 2 / 4;
+          background-color: var(--sl-color-neutral-50);
+          border: 1px solid var(--sl-color-neutral-400);
+          height: 100%;
+        "
+        [style.border-top-left-radius]="
+          (icon.settings.backgroundTopLeft ? 26 : 4) + 'px'
+        "
+        [style.border-top-right-radius]="
+          (icon.settings.backgroundTopRight ? 26 : 4) + 'px'
+        "
+        [style.border-bottom-left-radius]="
+          (icon.settings.backgroundBottomLeft ? 26 : 4) + 'px'
+        "
+        [style.border-bottom-right-radius]="
+          (icon.settings.backgroundBottomRight ? 26 : 4) + 'px'
+        "
+      >
+        &nbsp;
+      </div>
+
+      <!-- Toggle: left top -->
+      <div style="grid-row: 2; grid-column: 2; padding: 18px 20px 20px 18px">
+        <sl-switch
+          [checked]="icon.settings.backgroundTopLeft"
+          (sl-change)="icon.change('backgroundTopLeft', etob($event))"
+        ></sl-switch>
+      </div>
+
+      <!-- Toggle: right top -->
+      <div style="grid-row: 2; grid-column: 3; padding: 18px 10px 20px 20px">
+        <sl-switch
+          [checked]="icon.settings.backgroundTopRight"
+          (sl-change)="icon.change('backgroundTopRight', etob($event))"
+        ></sl-switch>
+      </div>
+
+      <!-- Toggle: left bottom -->
+      <div style="grid-row: 3; grid-column: 2; padding: 20px 20px 18px 18px">
+        <sl-switch
+          [checked]="icon.settings.backgroundBottomLeft"
+          (sl-change)="icon.change('backgroundBottomLeft', etob($event))"
+        ></sl-switch>
+      </div>
+
+      <!-- Toggle: bottom right -->
+      <div style="grid-row: 3; grid-column: 3; padding: 20px 10px 18px 20px">
+        <sl-switch
+          [checked]="icon.settings.backgroundBottomRight"
+          (sl-change)="icon.change('backgroundBottomRight', etob($event))"
+        ></sl-switch>
+      </div>
+    </div>
+  </sl-card>
+
+  <!-- --------------------------------------------------------------------- -->
+  <!--  Dashes                                                               -->
+  <!-- --------------------------------------------------------------------- -->
+  <sl-card class="card-header">
+    <div slot="header">Dashes</div>
+
+    <sl-color-picker
+      format="hex"
+      [attr.value]="icon.settings.dashesColor"
+      size="large"
+      (sl-change)="icon.change('dashesColor', etos($event))"
+    ></sl-color-picker>
+  </sl-card>
+
+  <!-- --------------------------------------------------------------------- -->
+  <!--  Shape                                                                -->
+  <!-- --------------------------------------------------------------------- -->
+  <sl-card class="card-header">
+    <div slot="header">Shape</div>
+
+    <p>
+      <sl-switch
+        [checked]="icon.settings.shapeGap"
+        (sl-change)="icon.change('shapeGap', etob($event))"
+      >
+        gap
+      </sl-switch>
+    </p>
+
+    <p>
       <sl-color-picker
         format="hex"
-        value="{{ icon.settings.dashesColor }}"
-        [attr.value]="icon.settings.backgroundColor2"
+        [attr.value]="icon.settings.shapeColor"
         size="large"
-        (sl-change)="icon.change('dashesColor', etos($event))"
+        (sl-change)="icon.change('shapeColor', etos($event))"
       ></sl-color-picker>
-    </sl-details>
+    </p>
+  </sl-card>
+</section>
 
-    <!-- ------------------------------------------------------------------- -->
-    <!--                                                                     -->
-    <!--  Settings                                                           -->
-    <!--                                                                     -->
-    <!-- ------------------------------------------------------------------- -->
-    <sl-details *ngIf="devMode" summary="See settings" [open]="true">
-      <pre [innerText]="icon.settings | json"></pre>
-    </sl-details>
-
-    <sl-switch [checked]="devMode" (sl-change)="devMode = etob($event)"
-      >Dev mode</sl-switch
-    >
-  </div>
-</sl-split-panel>
+<!-- ------------------------------------------------------------------- -->
+<!--  Settings                                                           -->
+<!-- ------------------------------------------------------------------- -->
+<sl-switch [checked]="devMode" (sl-change)="devMode = etob($event)">
+  Dev mode
+</sl-switch>
+<sl-details *ngIf="devMode" summary="See settings" [open]="true">
+  <pre [innerText]="icon.settings | json"></pre>
+</sl-details>
 
 <footer>
   <section>

@@ -1,33 +1,37 @@
 :host {
   app-icon {
-    display: block;
-    height: 300px;
-    width: 300px;
+    display: inline-block;
+    height: 256px;
+    width: 256px;
   }
 
-  sl-split-panel {
-    [slot="start"] {
-      padding: 20px;
-      display: flex;
+  > section {
+    padding: 20px;
+  }
+
+  section#preview {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: var(--sl-spacing-small);
+  }
+
+  section#control {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: stretch;
+    row-gap: var(--sl-spacing-small);
+    column-gap: var(--sl-spacing-small);
+
+    .grid {
+      display: inline-grid;
       align-items: center;
-      justify-content: center;
     }
 
-    [slot="end"] {
-      padding: 20px;
-
-      sl-details,
-      sl-switch {
-        &:not(:first-child) {
-          margin-top: var(--sl-spacing-2x-small);
-        }
-      }
-
-      .grid {
-        display: inline-grid;
-        grid-gap: 20px;
-        align-items: center;
-      }
+    sl-card::part(base) {
+      height: 100%;
     }
   }
 
