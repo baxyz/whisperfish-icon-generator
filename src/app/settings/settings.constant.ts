@@ -14,14 +14,14 @@ export const DEFAULT_SETTINGS: Settings = {
   shapeGap: true,
   shapeColor: '#FFFFFF',
 
-  eyeEnabled: true,
+  eyeEnabled: false,
   eyeSize: 140,
   eyeX: 702,
   eyeY: 983,
 
   dotsEnabled: true,
   dotsSize: 140,
-  dotsX: 964,
-  dotsY: 1115,
+  dotsX: 740,
+  dotsY: 940,
   dotsGap: 50,
 };

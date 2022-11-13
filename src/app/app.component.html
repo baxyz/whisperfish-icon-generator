@@ -1,6 +1,7 @@
 <section id="preview">
   <app-icon #icon></app-icon>
 </section>
+
 <section id="control">
   <!-- --------------------------------------------------------------------- -->
   <!--  Background                                                           -->
@@ -12,20 +13,16 @@
       <!-- Top-Left color gradient -->
       <div style="grid-row: 1; grid-column: 1">
         <sl-color-picker
-          format="hex"
-          [value]="icon.settings.backgroundColor1"
           size="large"
-          (sl-change)="icon.change('backgroundColor1', etos($event))"
+          data-key="backgroundColor1"
         ></sl-color-picker>
       </div>
 
       <!-- Bottom-Right color gradient -->
       <div style="grid-row: 4; grid-column: 4">
         <sl-color-picker
-          format="hex"
-          [value]="icon.settings.backgroundColor2"
           size="large"
-          (sl-change)="icon.change('backgroundColor2', etos($event))"
+          data-key="backgroundColor2"
         ></sl-color-picker>
       </div>
 
@@ -93,13 +90,7 @@
   <!-- --------------------------------------------------------------------- -->
   <sl-card class="card-header">
     <div slot="header">Dashes</div>
-
-    <sl-color-picker
-      format="hex"
-      [value]="icon.settings.dashesColor"
-      size="large"
-      (sl-change)="icon.change('dashesColor', etos($event))"
-    ></sl-color-picker>
+    <sl-color-picker size="large" data-key="dashesColor"></sl-color-picker>
   </sl-card>
 
   <!-- --------------------------------------------------------------------- -->
@@ -107,6 +98,8 @@
   <!-- --------------------------------------------------------------------- -->
   <sl-card class="card-header">
     <div slot="header">Shape</div>
+
+    <sl-color-picker size="large" data-key="shapeColor"></sl-color-picker>
 
     <p>
       <sl-switch
@@ -116,112 +109,95 @@
         gap
       </sl-switch>
     </p>
-
-    <p>
-      <sl-color-picker
-        format="hex"
-        [value]="icon.settings.shapeColor"
-        size="large"
-        (sl-change)="icon.change('shapeColor', etos($event))"
-      ></sl-color-picker>
-    </p>
   </sl-card>
 
   <!-- --------------------------------------------------------------------- -->
   <!--  Eye                                                                  -->
   <!-- --------------------------------------------------------------------- -->
   <sl-card class="card-header">
-    <div slot="header">Eye</div>
-
-    <p>
+    <div slot="header">
       <sl-switch
         [checked]="icon.settings.eyeEnabled"
         (sl-change)="icon.change('eyeEnabled', etob($event))"
       >
-        show
+        Eye
       </sl-switch>
-    </p>
-    <p>
-      <sl-input
-        type="number"
-        min="0"
-        [value]="icon.settings.eyeSize"
-        (sl-change)="icon.change('eyeSize', eton($event))"
-      >
-        <sl-icon name="aspect-ratio" slot="prefix"></sl-icon>
-      </sl-input>
-      <sl-input
-        type="number"
-        [min]="icon.settings.eyeSize"
-        [max]="icon.CONST.SIZE"
-        [value]="icon.settings.eyeX"
-        (sl-change)="icon.change('eyeX', eton($event))"
-      >
-        <sl-icon name="arrow-bar-right" slot="prefix"></sl-icon>
-      </sl-input>
-      <sl-input
-        type="number"
-        [min]="icon.settings.eyeSize"
-        [max]="icon.CONST.SIZE"
-        [value]="icon.settings.eyeY"
-        (sl-change)="icon.change('eyeY', eton($event))"
-      >
-        <sl-icon name="arrow-bar-down" slot="prefix"></sl-icon>
-      </sl-input>
-    </p>
+    </div>
+    <sl-input
+      type="number"
+      min="0"
+      [value]="icon.settings.eyeSize"
+      (sl-change)="icon.change('eyeSize', eton($event))"
+    >
+      <sl-icon name="aspect-ratio" slot="prefix"></sl-icon>
+    </sl-input>
+    <sl-input
+      type="number"
+      [min]="icon.settings.eyeSize"
+      [max]="icon.CONST.SIZE"
+      [value]="icon.settings.eyeX"
+      (sl-change)="icon.change('eyeX', eton($event))"
+    >
+      <sl-icon name="arrow-bar-right" slot="prefix"></sl-icon>
+    </sl-input>
+    <sl-input
+      type="number"
+      [min]="icon.settings.eyeSize"
+      [max]="icon.CONST.SIZE"
+      [value]="icon.settings.eyeY"
+      (sl-change)="icon.change('eyeY', eton($event))"
+    >
+      <sl-icon name="arrow-bar-down" slot="prefix"></sl-icon>
+    </sl-input>
   </sl-card>
 
   <!-- --------------------------------------------------------------------- -->
   <!--  Dots                                                                 -->
   <!-- --------------------------------------------------------------------- -->
   <sl-card class="card-header">
-    <div slot="header">Dots</div>
-
-    <p>
+    <div slot="header">
       <sl-switch
         [checked]="icon.settings.dotsEnabled"
         (sl-change)="icon.change('dotsEnabled', etob($event))"
       >
-        show
+        Dots
       </sl-switch>
-    </p>
-    <p>
-      <sl-input
-        type="number"
-        min="0"
-        [value]="icon.settings.dotsSize"
-        (sl-change)="icon.change('dotsSize', eton($event))"
-      >
-        <sl-icon name="aspect-ratio" slot="prefix"></sl-icon>
-      </sl-input>
-      <sl-input
-        type="number"
-        [min]="icon.settings.dotsSize"
-        [max]="icon.CONST.SIZE"
-        [value]="icon.settings.dotsGap"
-        (sl-change)="icon.change('dotsGap', eton($event))"
-      >
-        <sl-icon name="distribute-horizontal" slot="prefix"></sl-icon>
-      </sl-input>
-      <sl-input
-        type="number"
-        [min]="icon.settings.dotsSize"
-        [max]="icon.CONST.SIZE"
-        [value]="icon.settings.dotsX"
-        (sl-change)="icon.change('dotsX', eton($event))"
-      >
-        <sl-icon name="arrow-bar-right" slot="prefix"></sl-icon>
-      </sl-input>
-      <sl-input
-        type="number"
-        [min]="icon.settings.dotsSize"
-        [max]="icon.CONST.SIZE"
-        [value]="icon.settings.dotsY"
-        (sl-change)="icon.change('dotsY', eton($event))"
-      >
-        <sl-icon name="arrow-bar-down" slot="prefix"></sl-icon>
-      </sl-input>
-    </p>
+    </div>
+    <sl-input
+      type="number"
+      min="0"
+      [value]="icon.settings.dotsSize"
+      (sl-change)="icon.change('dotsSize', eton($event))"
+    >
+      <sl-icon name="aspect-ratio" slot="prefix"></sl-icon>
+    </sl-input>
+    <sl-input
+      type="number"
+      [min]="icon.settings.dotsSize"
+      [max]="icon.CONST.SIZE"
+      [value]="icon.settings.dotsGap"
+      (sl-change)="icon.change('dotsGap', eton($event))"
+    >
+      <sl-icon name="distribute-horizontal" slot="prefix"></sl-icon>
+    </sl-input>
+    <sl-input
+      type="number"
+      [min]="icon.settings.dotsSize"
+      [max]="icon.CONST.SIZE"
+      [value]="icon.settings.dotsX"
+      (sl-change)="icon.change('dotsX', eton($event))"
+    >
+      <sl-icon name="arrow-bar-right" slot="prefix"></sl-icon>
+    </sl-input>
+    <sl-input
+      type="number"
+      [min]="icon.settings.dotsSize"
+      [max]="icon.CONST.SIZE"
+      [value]="icon.settings.dotsY"
+      (sl-change)="icon.change('dotsY', eton($event))"
+    >
+      <sl-icon name="arrow-bar-down" slot="prefix"></sl-icon>
+    </sl-input>
   </sl-card>
 </section>
 
