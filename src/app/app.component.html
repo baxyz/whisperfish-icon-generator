@@ -46,7 +46,7 @@
     <!--  Background: Color                                                  -->
     <!--                                                                     -->
     <!-- ------------------------------------------------------------------- -->
-    <sl-details summary="Background Color" [open]="true">
+    <sl-details summary="Background Color">
       <div class="grid">
         <div style="grid-row: 1; grid-column: 1">Top-Left</div>
         <div style="grid-row: 1; grid-column: 2">
@@ -68,6 +68,21 @@
           ></sl-color-picker>
         </div>
       </div>
+    </sl-details>
+
+    <!-- ------------------------------------------------------------------- -->
+    <!--                                                                     -->
+    <!--  Dashes: Color                                                      -->
+    <!--                                                                     -->
+    <!-- ------------------------------------------------------------------- -->
+    <sl-details summary="Dashes Color">
+      <sl-color-picker
+        format="hex"
+        value="{{ icon.settings.dashesColor }}"
+        [attr.value]="icon.settings.backgroundColor2"
+        size="large"
+        (sl-change)="icon.change('dashesColor', etos($event))"
+      ></sl-color-picker>
     </sl-details>
 
     <!-- ------------------------------------------------------------------- -->

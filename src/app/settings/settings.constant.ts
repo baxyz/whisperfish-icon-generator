@@ -8,4 +8,6 @@ export const DEFAULT_SETTINGS: Settings = {
 
   backgroundColor1: '#104FD0',
   backgroundColor2: '#6B98F4',
+
+  dashesColor: '#FFFFFF',
 };

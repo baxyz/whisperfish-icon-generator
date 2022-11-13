@@ -6,4 +6,6 @@ export interface Settings {
 
   backgroundColor1: string;
   backgroundColor2: string;
+
+  dashesColor: string;
 }
