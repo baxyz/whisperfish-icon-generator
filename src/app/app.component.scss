@@ -9,7 +9,7 @@
     padding: 20px;
   }
 
-  section#preview {
+  section.preview {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -17,13 +17,25 @@
     column-gap: var(--sl-spacing-small);
   }
 
-  section#control {
+  section.control {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: stretch;
     row-gap: var(--sl-spacing-small);
     column-gap: var(--sl-spacing-small);
+
+    sl-card.list {
+      width: 200px;
+
+      sl-button {
+        width: 100%;
+
+        & + sl-button {
+          margin-top: var(--sl-spacing-x-small);
+        }
+      }
+    }
 
     .grid {
       display: inline-grid;

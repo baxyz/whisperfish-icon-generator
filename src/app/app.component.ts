@@ -56,4 +56,15 @@ export class AppComponent implements AfterViewInit {
   eton(event: Event): number {
     return +(event.target as HTMLInputElement).value;
   }
+
+  setBackground(color1: string, color2: string): void {
+    this.element.nativeElement
+      .querySelector('sl-color-picker[data-key="backgroundColor1"]')
+      .setColor(color1);
+    this.element.nativeElement
+      .querySelector('sl-color-picker[data-key="backgroundColor2"]')
+      .setColor(color2);
+  }
+
+  download(): void {}
 }

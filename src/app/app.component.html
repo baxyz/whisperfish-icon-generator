@@ -1,8 +1,8 @@
-<section id="preview">
+<section class="preview">
   <app-icon #icon></app-icon>
 </section>
 
-<section id="control">
+<section class="control">
   <!-- --------------------------------------------------------------------- -->
   <!--  Background                                                           -->
   <!-- --------------------------------------------------------------------- -->
@@ -201,15 +201,53 @@
   </sl-card>
 </section>
 
-<!-- ------------------------------------------------------------------- -->
-<!--  Settings                                                           -->
-<!-- ------------------------------------------------------------------- -->
-<sl-switch [checked]="devMode" (sl-change)="devMode = etob($event)">
-  Dev mode
-</sl-switch>
-<sl-details *ngIf="devMode" summary="See settings" [open]="true">
-  <pre [innerText]="icon.settings | json"></pre>
-</sl-details>
+<section class="control">
+  <!-- --------------------------------------------------------------------- -->
+  <!--  Background                                                           -->
+  <!-- --------------------------------------------------------------------- -->
+  <sl-card class="card-header list">
+    <div slot="header">Background</div>
+
+    <sl-button size="small" (click)="setBackground('#104FD0', '#6B98F4')">
+      Reset color
+    </sl-button>
+    <sl-button size="small" (click)="setBackground('#3A76F0', '#3A76F0')">
+      Set Signal color
+    </sl-button>
+    <sl-button size="small" (click)="setBackground('#26DAFB', '#00D4D9')">
+      Set Whisperfish color
+    </sl-button>
+    <sl-button size="small" (click)="setBackground('#0CCAD6', '#1C8E7C')">
+      Set Sailfish SMS color
+    </sl-button>
+    <sl-button size="small" (click)="setBackground('#4F79FF', '#0025A2')">
+      Set Royal blue
+    </sl-button>
+  </sl-card>
+
+  <!-- --------------------------------------------------------------------- -->
+  <!--  Download                                                             -->
+  <!-- --------------------------------------------------------------------- -->
+  <sl-card class="card-header">
+    <div slot="header">Download</div>
+    <sl-button variant="primary" outline (click)="download()" disabled>
+      Download
+    </sl-button>
+    <p>(soon)</p>
+  </sl-card>
+
+  <!-- --------------------------------------------------------------------- -->
+  <!--  Settings                                                             -->
+  <!-- --------------------------------------------------------------------- -->
+  <sl-card class="card-header">
+    <div slot="header">
+      <sl-switch [checked]="devMode" (sl-change)="devMode = etob($event)">
+        Settings
+      </sl-switch>
+    </div>
+    <pre *ngIf="devMode" [innerText]="icon.settings | json"></pre>
+  </sl-card>
+</section>
 
 <footer>
   <section>
