@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { DEFAULT_SETTINGS, Settings } from '../settings';
 import {
-  DEFAULT_SETTINGS,
+  CONST,
   REPAINT_BACKGROUND_SHAPE_PROPERTIES,
-  Settings,
-} from '../settings';
-
-const CONST = {
-  SIZE: 2048,
-
-  // Small round
-  S_ROUND: 34,
-  S_DELTA: 15,
-
-  // Big round (half the size)
-  B_ROUND: 1024,
-  B_DELTA: 458,
-};
+  REPAINT_SHAPE_SHAPE_PROPERTIES,
+} from './icon.constant';
+import {
+  getBackgroundBottomLeftPath,
+  getBackgroundBottomRightPath,
+  getBackgroundTopLeftPath,
+  getBackgroundTopRightPath,
+  getDotsPath,
+  getEyePath,
+  getShapePath,
+} from './icon.helpers';
 
 @Component({
   selector: 'app-icon',
@@ -33,8 +31,9 @@ export class IconComponent implements OnInit {
   /**
    * Our internal UI interaction
    */
-  private _ui = {
-    backgroundPath: '',
+  private _path = {
+    background: '',
+    shape: '',
   };
 
   /**
@@ -45,7 +44,7 @@ export class IconComponent implements OnInit {
   /**
    * public accessor for the UI convenient variables.
    */
-  public readonly ui: Readonly<typeof this._ui> = this._ui;
+  public readonly path: Readonly<typeof this._path> = this._path;
 
   /**
    * Simple setter for the settings.
@@ -63,7 +62,12 @@ export class IconComponent implements OnInit {
 
     // Special case: repaint background shape
     if (REPAINT_BACKGROUND_SHAPE_PROPERTIES.includes(property)) {
-      setTimeout(() => this.repaintBackgroundShape());
+      setTimeout(() => this.repaintBackground());
+    }
+
+    // Special case: repaint shape' shape
+    if (REPAINT_SHAPE_SHAPE_PROPERTIES.includes(property)) {
+      setTimeout(() => this.repaintShape());
     }
   }
 
@@ -73,13 +77,14 @@ export class IconComponent implements OnInit {
    * Init the SVG
    */
   ngOnInit(): void {
-    this.repaintBackgroundShape();
+    this.repaintBackground();
+    this.repaintShape();
   }
 
   /**
    * Repaint the background shape.
    */
-  private repaintBackgroundShape(): void {
+  private repaintBackground(): void {
     // For each corner, there is two options:
     // - small round (about 34px)
     // - big round (about 1024px, aka half the size)
@@ -94,52 +99,32 @@ export class IconComponent implements OnInit {
     // - a bezier curve to the next corder side (next side)
     // - a line to the the middle point of this new side
 
-    const path = [
-      // Start on left center
+    this._path.background = [
       `M 0 ${CONST.B_ROUND}`,
-
-      // Top left
-      this._settings.backgroundTopLeft
-        ? `C 0 ${CONST.B_DELTA} ${CONST.B_DELTA} 0 ${CONST.B_ROUND} 0`
-        : `L 0 ${CONST.S_ROUND} C 0 ${CONST.S_DELTA} ${CONST.S_DELTA} 0 ${CONST.S_ROUND} 0 L ${CONST.B_ROUND} 0`,
-
-      // Top right
-      this._settings.backgroundTopRight
-        ? `C ${CONST.SIZE - CONST.B_DELTA} 0 ${CONST.SIZE} ${CONST.B_DELTA} ${
-            CONST.SIZE
-          } ${CONST.B_ROUND}`
-        : `L ${CONST.SIZE - CONST.S_ROUND} 0 C ${
-            CONST.SIZE - CONST.S_DELTA
-          } 0 ${CONST.SIZE} ${CONST.S_DELTA} ${CONST.SIZE} ${CONST.S_ROUND} L ${
-            CONST.SIZE
-          } ${CONST.B_ROUND}`,
-
-      // Bottom right
-      this._settings.backgroundBottomRight
-        ? `C ${CONST.SIZE} ${CONST.SIZE - CONST.B_DELTA} ${
-            CONST.SIZE - CONST.B_DELTA
-          } ${CONST.SIZE} ${CONST.B_ROUND} ${CONST.SIZE}`
-        : `L ${CONST.SIZE} ${CONST.SIZE - CONST.S_ROUND} C ${CONST.SIZE} ${
-            CONST.SIZE - CONST.S_DELTA
-          } ${CONST.SIZE - CONST.S_DELTA} ${CONST.SIZE} ${
-            CONST.SIZE - CONST.S_ROUND
-          } ${CONST.SIZE} L ${CONST.B_ROUND} ${CONST.SIZE}`,
-
-      // Bottom left
-      this._settings.backgroundBottomLeft
-        ? `C ${CONST.B_DELTA} ${CONST.SIZE} 0 ${CONST.SIZE - CONST.B_DELTA} 0 ${
-            CONST.B_ROUND
-          }`
-        : `L ${CONST.S_ROUND} ${CONST.SIZE} C ${CONST.S_DELTA} ${
-            CONST.SIZE
-          } 0 ${CONST.SIZE - CONST.S_DELTA} 0 ${
-            CONST.SIZE - CONST.S_ROUND
-          } L 0 ${CONST.B_ROUND}`,
-
-      // Finish
+      getBackgroundTopLeftPath(this._settings),
+      getBackgroundTopRightPath(this._settings),
+      getBackgroundBottomRightPath(this._settings),
+      getBackgroundBottomLeftPath(this._settings),
       'Z',
-    ];
+    ]
+      .filter((t) => Boolean(t))
+      .join(' ');
+  }
 
-    this._ui.backgroundPath = path.join(' ');
+  /**
+   * Repaint the Shape' shape.
+   */
+  private repaintShape(): void {
+    // First, we select the shape to draw.
+    // Second, we extrude the eye.
+    // Third, we extrude the dots.
+
+    this._path.shape = [
+      getShapePath(this._settings),
+      getEyePath(this.settings),
+      getDotsPath(this.settings),
+    ]
+      .filter((t) => Boolean(t))
+      .join(' ');
   }
 }
