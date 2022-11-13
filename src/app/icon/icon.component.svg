@@ -1,9 +1,9 @@
-<svg viewBox="0 0 2048 2048" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg [attr.viewBox]="'0 0 ' + CONST.SIZE + ' ' + CONST.SIZE" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg_linear" x1="0" y1="0" x2="2048" y2="2048" gradientUnits="userSpaceOnUse">
+    <linearGradient id="bg_linear" x1="0" y1="0" [attr.x2]="CONST.SIZE" [attr.y2]="CONST.SIZE" gradientUnits="userSpaceOnUse">
       <stop [attr.stop-color]="settings.backgroundColor1" />
       <stop offset="1" [attr.stop-color]="settings.backgroundColor2" />
     </linearGradient>
   </defs>
-  <path d="M0 1024C0 458 458 0 1024 0C1033 0 2014 0 2014 0C2033 0 2048 15 2048 34V2014C2048 2033 2033 2048 2014 2048C2014 2048 1033 2048 1024 2048C458 2048 0 1590 0 1024Z" fill="url(#bg_linear)" />
+  <path [attr.d]="ui.backgroundPath" fill="url(#bg_linear)" />
 </svg>

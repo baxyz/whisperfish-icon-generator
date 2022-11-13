@@ -1,0 +1,17 @@
+<!ELEMENT svg (defs,path)>
+<!ATTLIST svg [attr.viewBox] CDATA #REQUIRED>
+<!ATTLIST svg fill NMTOKEN #REQUIRED>
+<!ELEMENT defs (linearGradient)>
+<!ELEMENT linearGradient (stop+)>
+<!ATTLIST linearGradient id NMTOKEN #REQUIRED>
+<!ATTLIST linearGradient x1 NMTOKEN #REQUIRED>
+<!ATTLIST linearGradient y1 NMTOKEN #REQUIRED>
+<!ATTLIST linearGradient [attr.x2] NMTOKEN #REQUIRED>
+<!ATTLIST linearGradient [attr.y2] NMTOKEN #REQUIRED>
+<!ATTLIST linearGradient gradientUnits NMTOKEN #REQUIRED>
+<!ELEMENT stop EMPTY>
+<!ATTLIST stop [attr.stop-color] NMTOKEN #REQUIRED>
+<!ATTLIST stop offset NMTOKEN #IMPLIED>
+<!ELEMENT path EMPTY>
+<!ATTLIST path [attr.d] NMTOKEN #REQUIRED>
+<!ATTLIST path fill CDATA #REQUIRED>
