@@ -10,4 +10,7 @@ export const DEFAULT_SETTINGS: Settings = {
   backgroundColor2: '#6B98F4',
 
   dashesColor: '#FFFFFF',
+
+  shapeGap: true,
+  shapeColor: '#FFFFFF',
 };

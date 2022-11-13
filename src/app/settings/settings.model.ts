@@ -8,4 +8,7 @@ export interface Settings {
   backgroundColor2: string;
 
   dashesColor: string;
+
+  shapeGap: boolean;
+  shapeColor: string;
 }
