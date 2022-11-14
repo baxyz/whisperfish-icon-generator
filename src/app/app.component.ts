@@ -1,11 +1,6 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { SlColorPicker } from '@shoelace-style/shoelace';
+import { FileSaverService } from 'ngx-filesaver';
 import { IconComponent } from './icon';
 import { Settings } from './settings';
 
@@ -16,10 +11,14 @@ import { Settings } from './settings';
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('icon') icon!: IconComponent;
+  @ViewChild('icon', { read: ElementRef }) iconContainer!: ElementRef;
 
   devMode: boolean = false;
 
-  constructor(readonly element: ElementRef, readonly renderer: Renderer2) {}
+  constructor(
+    readonly element: ElementRef,
+    readonly fileSaverService: FileSaverService
+  ) {}
 
   ngAfterViewInit(): void {
     // Auto: Color pickers
@@ -66,5 +65,15 @@ export class AppComponent implements AfterViewInit {
       .setColor(color2);
   }
 
-  download(): void {}
+  download(): void {
+    const content = this.iconContainer.nativeElement.innerHTML;
+    const d = new Date();
+    const filename = `whisperfish ${d.getFullYear() % 100}-${String(
+      d.getMonth() + 1
+    ).padStart(
+      2,
+      '0'
+    )}-${d.getDate()} ${d.getHours()}-${d.getMinutes()}-${d.getSeconds()}.svg`;
+    this.fileSaverService.save(new Blob([content]), filename);
+  }
 }
