@@ -10,6 +10,7 @@ export interface Settings {
   dashesColor: string;
 
   shapeGap: boolean;
+  shapeTail: boolean;
   shapeColor: string;
 
   eyeEnabled: boolean;

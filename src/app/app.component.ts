@@ -13,8 +13,6 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('icon') icon!: IconComponent;
   @ViewChild('icon', { read: ElementRef }) iconContainer!: ElementRef;
 
-  devMode: boolean = false;
-
   constructor(
     readonly element: ElementRef,
     readonly fileSaverService: FileSaverService
@@ -62,6 +60,15 @@ export class AppComponent implements AfterViewInit {
       .setColor(color1);
     this.element.nativeElement
       .querySelector('sl-color-picker[data-key="backgroundColor2"]')
+      .setColor(color2);
+  }
+
+  setShape(color1: string, color2: string): void {
+    this.element.nativeElement
+      .querySelector('sl-color-picker[data-key="shapeColor"]')
+      .setColor(color1);
+    this.element.nativeElement
+      .querySelector('sl-color-picker[data-key="dashesColor"]')
       .setColor(color2);
   }
 

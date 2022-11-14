@@ -83,14 +83,43 @@
         ></sl-switch>
       </div>
     </div>
-  </sl-card>
-
-  <!-- --------------------------------------------------------------------- -->
-  <!--  Dashes                                                               -->
-  <!-- --------------------------------------------------------------------- -->
-  <sl-card class="card-header">
-    <div slot="header">Dashes</div>
-    <sl-color-picker size="large" data-key="dashesColor"></sl-color-picker>
+    <div class="grid">
+      <sl-button
+        variant="text"
+        size="small"
+        (click)="setBackground('#104FD0', '#6B98F4')"
+        style="grid-row: 1; grid-column: 1"
+        >Reset color</sl-button
+      >
+      <sl-button
+        variant="text"
+        size="small"
+        (click)="setBackground('#4F79FF', '#0025A2')"
+        style="grid-row: 1; grid-column: 2"
+        >Set Royal blue color</sl-button
+      >
+      <sl-button
+        variant="text"
+        size="small"
+        (click)="setBackground('#3A76F0', '#3A76F0')"
+        style="grid-row: 2; grid-column: 1"
+        >Set Signal color</sl-button
+      >
+      <sl-button
+        variant="text"
+        size="small"
+        (click)="setBackground('#26DAFB', '#00D4D9')"
+        style="grid-row: 2; grid-column: 2"
+        >Set Whisperfish color</sl-button
+      >
+      <sl-button
+        variant="text"
+        size="small"
+        (click)="setBackground('#0CCAD6', '#1C8E7C')"
+        style="grid-row: 3; grid-column: 2"
+        >Set Sailfish SMS color</sl-button
+      >
+    </div>
   </sl-card>
 
   <!-- --------------------------------------------------------------------- -->
@@ -99,8 +128,23 @@
   <sl-card class="card-header">
     <div slot="header">Shape</div>
 
-    <sl-color-picker size="large" data-key="shapeColor"></sl-color-picker>
-
+    <div
+      class="grid"
+      style="justify-items: center; gap: var(--sl-spacing-small)"
+    >
+      <div style="grid-column: 1; grid-row: 1">
+        <sl-icon name="chat"></sl-icon>
+      </div>
+      <div style="grid-column: 1; grid-row: 2">
+        <sl-color-picker size="large" data-key="shapeColor"></sl-color-picker>
+      </div>
+      <div style="grid-column: 2; grid-row: 1">
+        <sl-icon name="three-dots"></sl-icon>
+      </div>
+      <div style="grid-column: 2; grid-row: 2">
+        <sl-color-picker size="large" data-key="dashesColor"></sl-color-picker>
+      </div>
+    </div>
     <p>
       <sl-switch
         [checked]="icon.settings.shapeGap"
@@ -109,6 +153,22 @@
         gap
       </sl-switch>
     </p>
+    <p *ngIf="icon.settings.shapeGap">
+      <sl-switch
+        [checked]="icon.settings.shapeTail"
+        (sl-change)="icon.change('shapeTail', etob($event))"
+      >
+        fish tail
+      </sl-switch>
+    </p>
+    <div class="grid">
+      <sl-button
+        variant="text"
+        size="small"
+        (click)="setShape('#FFFFFF', '#FFFFFF')"
+        >Reset color</sl-button
+      >
+    </div>
   </sl-card>
 
   <!-- --------------------------------------------------------------------- -->
@@ -199,31 +259,6 @@
       <sl-icon name="arrow-bar-down" slot="prefix"></sl-icon>
     </sl-input>
   </sl-card>
-</section>
-
-<section class="control">
-  <!-- --------------------------------------------------------------------- -->
-  <!--  Background                                                           -->
-  <!-- --------------------------------------------------------------------- -->
-  <sl-card class="card-header list">
-    <div slot="header">Background</div>
-
-    <sl-button size="small" (click)="setBackground('#104FD0', '#6B98F4')">
-      Reset color
-    </sl-button>
-    <sl-button size="small" (click)="setBackground('#3A76F0', '#3A76F0')">
-      Set Signal color
-    </sl-button>
-    <sl-button size="small" (click)="setBackground('#26DAFB', '#00D4D9')">
-      Set Whisperfish color
-    </sl-button>
-    <sl-button size="small" (click)="setBackground('#0CCAD6', '#1C8E7C')">
-      Set Sailfish SMS color
-    </sl-button>
-    <sl-button size="small" (click)="setBackground('#4F79FF', '#0025A2')">
-      Set Royal blue
-    </sl-button>
-  </sl-card>
 
   <!-- --------------------------------------------------------------------- -->
   <!--  Download                                                             -->
@@ -233,18 +268,6 @@
     <sl-button variant="primary" outline (click)="download()">
       Download
     </sl-button>
-  </sl-card>
-
-  <!-- --------------------------------------------------------------------- -->
-  <!--  Settings                                                             -->
-  <!-- --------------------------------------------------------------------- -->
-  <sl-card class="card-header">
-    <div slot="header">
-      <sl-switch [checked]="devMode" (sl-change)="devMode = etob($event)">
-        Settings
-      </sl-switch>
-    </div>
-    <pre *ngIf="devMode" [innerText]="icon.settings | json"></pre>
   </sl-card>
 </section>
 

@@ -38,8 +38,12 @@
     }
 
     .grid {
-      display: inline-grid;
+      display: grid;
       align-items: center;
+
+      &:not(:first-child) {
+        margin-top: var(--sl-spacing-large);
+      }
     }
 
     sl-card::part(base) {
@@ -51,6 +55,16 @@
 
       & + sl-input {
         margin-top: var(--sl-spacing-small);
+      }
+    }
+
+    .command-list {
+      display: flex;
+      flex-direction: column;
+
+      > a {
+        display: inline-block;
+        white-space: nowrap;
       }
     }
   }

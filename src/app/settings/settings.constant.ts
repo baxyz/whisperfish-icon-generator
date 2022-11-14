@@ -12,6 +12,7 @@ export const DEFAULT_SETTINGS: Settings = {
   dashesColor: '#FFFFFF',
 
   shapeGap: true,
+  shapeTail: true,
   shapeColor: '#FFFFFF',
 
   eyeEnabled: false,
